@@ -24,8 +24,9 @@ class PepParsePipeline:
             fieldnames = ['Status', 'Amount']
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
             writer.writeheader()
-            total = 0
-            for status, count in self.status_counter.items():
-                writer.writerow({'Status': status, 'Amount': count})
-                total += count
+            writer.writerows({'Status': status,
+                              'Amount': count}
+                             for status, count
+                             in self.status_counter.items())
+            total = sum(self.status_counter.values())
             writer.writerow({'Status': 'Total', 'Amount': total})

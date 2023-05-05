@@ -5,8 +5,10 @@ from pep_parse.items import PepParseItem
 
 class PepSpider(scrapy.Spider):
     name = 'pep'
-    allowed_domains = ['peps.python.org']
     start_urls = ['https://peps.python.org/']
+    # тесты требуют явного указания 'https://peps.python.org/' в start_urls
+    # можно что-то такое, хотя оно, кажется, менее читаемо
+    allowed_domains = [url.split('/')[2] for url in start_urls]
 
     def parse(self, response):
         for pep in response.css(

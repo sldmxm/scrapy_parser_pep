@@ -5,8 +5,8 @@ RESULTS_DIR = 'results'
 
 BOT_NAME = 'pep_parse'
 
-SPIDER_MODULES = ['pep_parse.spiders']
 NEWSPIDER_MODULE = 'pep_parse.spiders'
+SPIDER_MODULES = [NEWSPIDER_MODULE]
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
